@@ -7,7 +7,7 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import {Http, Response} from '@angular/http';
-//testing toolchain
+//testing toolchain 2
 
 
 @Component({
