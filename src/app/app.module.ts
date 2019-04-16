@@ -1,4 +1,4 @@
-// import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +14,8 @@ import { MatTableModule } from '@angular/material';
   imports: [
     HttpModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent],
