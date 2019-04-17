@@ -15,6 +15,8 @@ function getConn() {
   var sthpdm;
 
   datab = appenv.getServiceCreds(process.env.DB2);
+  
+  console.log('datab...', datab)
   if (datab) {
   } else {
     cfenv = require('./env.json');

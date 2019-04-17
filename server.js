@@ -40,7 +40,6 @@ server.listen(port);
 
 function api(req, res) {
 var strquery = require('./db2function');
-let p = path.resolve();
 
   try {
      var fields, sql;
