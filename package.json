@@ -1,11 +1,17 @@
 {
-  "name": "angular2-http",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "garage-angular2-http",
+  "version": "1.0.0",
+  "description": "Sample app for garage",
+  "main": "server.js",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+},
   "scripts": {
     "ng": "ng",
     "startold": "ng serve",
-    "start": "ts-node src/app/server.ts",
+    "start2": "ts-node src/app/server.ts",
+    "start": "node server.js",
     "build": "ng build",
     "bundle": "webpack",
     "test": "ng test",
