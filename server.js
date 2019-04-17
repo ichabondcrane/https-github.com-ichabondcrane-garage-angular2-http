@@ -57,7 +57,7 @@ var strquery = require('./db2function');
 
   } catch (err) {
     console.info('$app (api) =>', err);
-    let msg = '$app.ts => (api) resource not found==>' + JSON.stringify(err);
+    var msg = '$app.ts => (api) resource not found==>' + JSON.stringify(err);
     process.on('exit', function (err, res) {
       console.log('$app.ts (exit) => fatal error, system shutting down : ' + err);
       return process.exit(err);
