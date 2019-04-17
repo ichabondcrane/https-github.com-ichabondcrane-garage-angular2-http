@@ -16,7 +16,9 @@
     "bundle": "webpack",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "dist": "ng build",
+    "push": "npm run dist && cd dist"
   },
   "private": true,
   "dependencies": {
