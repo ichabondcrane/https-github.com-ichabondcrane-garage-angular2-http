@@ -43,7 +43,7 @@ var strquery = require('./db2function');
 
   try {
      var fields, sql;
-      sql =`SELECT ID, STATUS, DESCRIPTION FROM  CMW37659.REQ_DOCS` ;
+      sql = "SELECT ID, STATUS, DESCRIPTION FROM  CMW37659.REQ_DOCS";
       fields = ['ID,STATUS,DESCRIPTION'].join('').split(',');
 
     strquery.runquery(sql,fields, function(err, data, response) {
