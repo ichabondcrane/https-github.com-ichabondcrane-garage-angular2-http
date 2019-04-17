@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".data-table {\n    width: 80%;\n    margin: 15px auto;\n  }\n  ", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"\">\n        <mat-table [dataSource]=\"dataSource\">\n      \n          <ng-container matColumnDef=\"ID\">\n            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>\n            <mat-cell *matCellDef=\"let post\"> {{post.ID}} </mat-cell>\n          </ng-container>\n      \n          <ng-container matColumnDef=\"STATUS\">\n            <mat-header-cell *matHeaderCellDef> STATUS </mat-header-cell>\n            <mat-cell *matCellDef=\"let post\"> {{post.STATUS}} </mat-cell>\n          </ng-container>\n      \n          <ng-container matColumnDef=\"DESCRIPTION\">\n            <mat-header-cell *matHeaderCellDef> DESCRIPTION </mat-header-cell>\n            <mat-cell *matCellDef=\"let post\"> {{post.DESCRIPTION}} </mat-cell>\n          </ng-container>\n      \n          \n      \n          <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n          <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n      \n        </mat-table>\n      </div>"
+module.exports = "<div class=\"mat-elevation-z8 data-table\">\n  <mat-table class=\"full-width-table\" [dataSource]=\"dataSource\">\n\n    <ng-container matColumnDef=\"ID\">\n      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>\n      <mat-cell *matCellDef=\"let post\"> {{post.ID}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"STATUS\">\n      <mat-header-cell *matHeaderCellDef> STATUS </mat-header-cell>\n      <mat-cell *matCellDef=\"let post\"> {{post.STATUS}} </mat-cell>\n    </ng-container>\n\n    <ng-container matColumnDef=\"DESCRIPTION\">\n      <mat-header-cell *matHeaderCellDef> DESCRIPTION </mat-header-cell>\n      <mat-cell *matCellDef=\"let post\"> {{post.DESCRIPTION}} </mat-cell>\n    </ng-container>\n\n\n\n    <mat-header-row *matHeaderRowDef=\"displayedColumns\"></mat-header-row>\n    <mat-row *matRowDef=\"let row; columns: displayedColumns;\"></mat-row>\n\n  </mat-table>\n  <mat-paginator #paginator \n    [length]=\"myData?.length\"\n    [pageIndex]=\"0\" \n    [pageSize]=\"50\" \n    [pageSizeOptions]=\"[25, 50, 100, 250]\">\n  </mat-paginator>\n</div>"
 
 /***/ }),
 
@@ -57,6 +57,7 @@ module.exports = "<div class=\"\">\n        <mat-table [dataSource]=\"dataSource
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/of.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -84,7 +85,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-//testing toolchain 2
+
 var AppComponent = /** @class */ (function () {
     function AppComponent(http) {
         this.http = http;
@@ -99,30 +100,46 @@ var AppComponent = /** @class */ (function () {
             .map(function (response) { return response.json(); })
             .subscribe(function (res) {
             _this.myData = res;
-            _this.dataSource = new MyDataSource(_this.myData);
+            _this.dataSource = new MyDataSource(_this.myData, _this.paginator);
+            _this.myData.length = res.length;
         });
     };
-    var _a;
+    var _a, _b;
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatPaginator */]),
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatPaginator */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__angular_material__["a" /* MatPaginator */]) === "function" && _a || Object)
+    ], AppComponent.prototype, "paginator", void 0);
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* Http */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* Http */]) === "function" && _b || Object])
     ], AppComponent);
     return AppComponent;
 }());
 
 var MyDataSource = /** @class */ (function (_super) {
     __extends(MyDataSource, _super);
-    function MyDataSource(data) {
+    function MyDataSource(dataBase, paginator) {
         var _this = _super.call(this) || this;
-        _this.data = data;
+        _this.dataBase = dataBase;
+        _this.paginator = paginator;
         return _this;
     }
     MyDataSource.prototype.connect = function () {
-        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].of(this.data);
+        var _this = this;
+        var displayDataChanges = [
+            this.dataBase,
+            this.paginator.page,
+        ];
+        return __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */].merge.apply(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["a" /* Observable */], displayDataChanges).map(function () {
+            var data = _this.dataBase.slice();
+            var startIndex = _this.paginator.pageIndex * _this.paginator.pageSize;
+            var finalData = data.splice(startIndex, _this.paginator.pageSize);
+            return finalData;
+        });
     };
     MyDataSource.prototype.disconnect = function () { };
     return MyDataSource;
@@ -151,8 +168,9 @@ var Post = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -163,7 +181,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 var AppModule = /** @class */ (function () {
@@ -175,10 +194,13 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */]
+                __WEBPACK_IMPORTED_MODULE_6__angular_material__["c" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_6__angular_material__["b" /* MatPaginatorModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser_animations__["b" /* NoopAnimationsModule */]
             ],
             providers: [],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]],

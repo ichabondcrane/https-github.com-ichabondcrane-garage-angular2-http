@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,11 @@ import { MatTableModule } from '@angular/material';
     HttpModule,
     HttpClientModule,
     MatTableModule,
-    BrowserModule
+    BrowserModule,
+    MatPaginatorModule ,
+    BrowserAnimationsModule,
+    NoopAnimationsModule 
+
   ],
   providers: [],
   bootstrap: [AppComponent],
