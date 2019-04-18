@@ -12,6 +12,6 @@ a table on DB2 on IBM Cloud.
 , Description and Status
 
 ###  Useful links:
-1. [Creating Toolchains](https://cloud.ibm.com/docs/services/ContinuousDelivery?topic=ContinuousDelivery-toolchains_getting_started#toolchains_getting_started)
+1. [Creating IBM Toolchains](https://cloud.ibm.com/docs/services/ContinuousDelivery?topic=ContinuousDelivery-toolchains_getting_started#toolchains_getting_started)
 2. [IBM DB2 on Cloud](https://www.ibm.com/sg-en/cloud/db2-on-cloud)
 
